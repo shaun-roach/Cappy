@@ -25,14 +25,14 @@ namespace Cappy
         {
             if (Control.IsKeyLocked(Keys.CapsLock))
             {
-                this.notifyCappy.Icon = Cappy.Properties.Resources.insert_text;
+                this.notifyCappy.Icon = Cappy.Properties.Resources.capson;
                 this.notifyCappy.Text = "Caps Lock ON";
                 this.label1.Text = "Caps Lock is currently ON";
                 this.capsLockToolStripMenuItem.Checked = true;
             }
             else
             {
-                this.notifyCappy.Icon = Cappy.Properties.Resources.stop;
+                this.notifyCappy.Icon = Cappy.Properties.Resources.capsoff;
                 this.notifyCappy.Text = "Caps Lock OFF";
                 this.label1.Text = "Caps Lock is currently OFF";
                 this.capsLockToolStripMenuItem.Checked = false;
@@ -46,16 +46,21 @@ namespace Cappy
 
         private void NotifyCappy_DoubleClick(object sender, EventArgs e)
         {
-            this.toggleShow();
+            this.ToggleShow();
         }
 
-        private void toggleShow()
+        private void ToggleShow()
         {
             this.allowshowdisplay = true;
             this.Visible = !this.Visible;
             if (this.Visible)
             {
                 this.WindowState = FormWindowState.Normal;
+                this.showToolStripMenuItem.Text = "Hide";
+            }
+            else
+            {
+                this.showToolStripMenuItem.Text = "Show";
             }
         }
 
@@ -68,7 +73,7 @@ namespace Cappy
         {
             if (WindowState == FormWindowState.Minimized)
             {
-                this.Hide();                
+                this.ToggleShow();              
             }
         }
 
@@ -79,7 +84,21 @@ namespace Cappy
 
         private void ShowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.toggleShow();
+            this.ToggleShow();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                this.ToggleShow();
+            }
+        }
+
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

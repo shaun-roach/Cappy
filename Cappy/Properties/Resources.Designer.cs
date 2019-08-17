@@ -63,9 +63,9 @@ namespace Cappy.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon insert_text {
+        internal static System.Drawing.Icon capsoff {
             get {
-                object obj = ResourceManager.GetObject("insert_text", resourceCulture);
+                object obj = ResourceManager.GetObject("capsoff", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace Cappy.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon stop {
+        internal static System.Drawing.Icon capson {
             get {
-                object obj = ResourceManager.GetObject("stop", resourceCulture);
+                object obj = ResourceManager.GetObject("capson", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

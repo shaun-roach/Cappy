@@ -31,15 +31,17 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.notifyCappy = new System.Windows.Forms.NotifyIcon(this.components);
+            this.cappyMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.capsLockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cappyTimer = new System.Windows.Forms.Timer(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.cappyMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.capsLockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1.SuspendLayout();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cappyMenu.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyCappy
@@ -49,6 +51,33 @@
             this.notifyCappy.Text = "Caps Lock";
             this.notifyCappy.Visible = true;
             this.notifyCappy.DoubleClick += new System.EventHandler(this.NotifyCappy_DoubleClick);
+            // 
+            // cappyMenu
+            // 
+            this.cappyMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showToolStripMenuItem,
+            this.capsLockToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.exitToolStripMenuItem});
+            this.cappyMenu.Name = "cappyMenu";
+            this.cappyMenu.Size = new System.Drawing.Size(129, 76);
+            this.cappyMenu.Opening += new System.ComponentModel.CancelEventHandler(this.CappyMenu_Opening);
+            // 
+            // capsLockToolStripMenuItem
+            // 
+            this.capsLockToolStripMenuItem.Checked = true;
+            this.capsLockToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.capsLockToolStripMenuItem.Name = "capsLockToolStripMenuItem";
+            this.capsLockToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.capsLockToolStripMenuItem.Text = "Caps Lock";
+            // 
+            // showToolStripMenuItem
+            // 
+            this.showToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.showToolStripMenuItem.Name = "showToolStripMenuItem";
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.showToolStripMenuItem.Text = "Show";
+            this.showToolStripMenuItem.Click += new System.EventHandler(this.ShowToolStripMenuItem_Click);
             // 
             // cappyTimer
             // 
@@ -84,29 +113,17 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
             // 
-            // cappyMenu
+            // toolStripSeparator1
             // 
-            this.cappyMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.capsLockToolStripMenuItem,
-            this.showToolStripMenuItem});
-            this.cappyMenu.Name = "cappyMenu";
-            this.cappyMenu.Size = new System.Drawing.Size(129, 48);
-            this.cappyMenu.Opening += new System.ComponentModel.CancelEventHandler(this.CappyMenu_Opening);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(125, 6);
             // 
-            // capsLockToolStripMenuItem
+            // exitToolStripMenuItem
             // 
-            this.capsLockToolStripMenuItem.Checked = true;
-            this.capsLockToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.capsLockToolStripMenuItem.Name = "capsLockToolStripMenuItem";
-            this.capsLockToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
-            this.capsLockToolStripMenuItem.Text = "Caps Lock";
-            // 
-            // showToolStripMenuItem
-            // 
-            this.showToolStripMenuItem.Name = "showToolStripMenuItem";
-            this.showToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
-            this.showToolStripMenuItem.Text = "Show";
-            this.showToolStripMenuItem.Click += new System.EventHandler(this.ShowToolStripMenuItem_Click);
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -118,11 +135,12 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Cappy v1.0.1";
+            this.Text = "Cappy v1.0.2";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
+            this.cappyMenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.cappyMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,6 +156,8 @@
         private System.Windows.Forms.ContextMenuStrip cappyMenu;
         private System.Windows.Forms.ToolStripMenuItem capsLockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 

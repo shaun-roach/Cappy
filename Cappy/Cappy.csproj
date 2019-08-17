@@ -116,5 +116,11 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\capsoff.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\capson.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

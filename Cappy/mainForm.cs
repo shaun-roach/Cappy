@@ -19,6 +19,10 @@ namespace Cappy
             InitializeComponent();
 
             this.CheckCapsLock();
+
+            var assemblyLocation = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            var version = System.Diagnostics.FileVersionInfo.GetVersionInfo(assemblyLocation).ProductVersion;            
+            this.Text = "Cappy v" + version;
         }
 
         private void CheckCapsLock()
@@ -29,6 +33,7 @@ namespace Cappy
                 this.notifyCappy.Text = "Caps Lock ON";
                 this.label1.Text = "Caps Lock is currently ON";
                 this.capsLockToolStripMenuItem.Checked = true;
+                this.pictureBox1.Image = Bitmap.FromHicon(Cappy.Properties.Resources.capson.Handle);
             }
             else
             {
@@ -36,6 +41,7 @@ namespace Cappy
                 this.notifyCappy.Text = "Caps Lock OFF";
                 this.label1.Text = "Caps Lock is currently OFF";
                 this.capsLockToolStripMenuItem.Checked = false;
+                this.pictureBox1.Image = Bitmap.FromHicon(Cappy.Properties.Resources.capsoff.Handle);
             }
         }
 
@@ -99,6 +105,12 @@ namespace Cappy
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            AboutBox aboutBox = new AboutBox();
+            aboutBox.ShowDialog();
         }
     }
 }

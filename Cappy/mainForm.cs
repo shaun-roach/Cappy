@@ -13,6 +13,8 @@ namespace Cappy
     public partial class MainForm : Form
     {
         private bool allowshowdisplay = false;
+        private bool capsLockOn = Control.IsKeyLocked(Keys.CapsLock);
+        private OnOffForm onOffForm = new OnOffForm();
 
         public MainForm()
         {
@@ -27,22 +29,42 @@ namespace Cappy
 
         private void CheckCapsLock()
         {
+            this.cappyTimer.Enabled = false;
             if (Control.IsKeyLocked(Keys.CapsLock))
             {
-                this.notifyCappy.Icon = Cappy.Properties.Resources.capson;
-                this.notifyCappy.Text = "Caps Lock ON";
-                this.label1.Text = "Caps Lock is currently ON";
-                this.capsLockToolStripMenuItem.Checked = true;
-                this.pictureBox1.Image = Bitmap.FromHicon(Cappy.Properties.Resources.capson.Handle);
+                if (!capsLockOn)
+                {
+                    this.onOffForm.labelCaps.Text = "A";
+                    this.notifyCappy.Icon = Cappy.Properties.Resources.capson;
+                    this.notifyCappy.Text = "Caps Lock ON";
+                    this.label1.Text = "Caps Lock is currently ON";
+                    this.capsLockToolStripMenuItem.Checked = true;
+                    this.pictureBox1.Image = Bitmap.FromHicon(Cappy.Properties.Resources.capson.Handle);
+                    this.onOffForm.Left = Cursor.Position.X;
+                    this.onOffForm.Top = Cursor.Position.Y;                                        
+                    this.onOffForm.labelCaps.Visible = true;
+                    this.onOffForm.Visible = true;
+                    this.capsLockOn = true;
+                }
             }
             else
             {
-                this.notifyCappy.Icon = Cappy.Properties.Resources.capsoff;
-                this.notifyCappy.Text = "Caps Lock OFF";
-                this.label1.Text = "Caps Lock is currently OFF";
-                this.capsLockToolStripMenuItem.Checked = false;
-                this.pictureBox1.Image = Bitmap.FromHicon(Cappy.Properties.Resources.capsoff.Handle);
+                if (capsLockOn)
+                {                    
+                    this.onOffForm.labelCaps.Text = "a";
+                    this.notifyCappy.Icon = Cappy.Properties.Resources.capsoff;
+                    this.notifyCappy.Text = "Caps Lock OFF";
+                    this.label1.Text = "Caps Lock is currently OFF";
+                    this.capsLockToolStripMenuItem.Checked = false;
+                    this.pictureBox1.Image = Bitmap.FromHicon(Cappy.Properties.Resources.capsoff.Handle);
+                    this.onOffForm.Left = Cursor.Position.X;
+                    this.onOffForm.Top = Cursor.Position.Y;
+                    this.onOffForm.labelCaps.Visible = true;
+                    this.onOffForm.Visible = true;                    
+                    this.capsLockOn = false;
+                }
             }
+            this.cappyTimer.Enabled = true;
         }
 
         protected override void SetVisibleCore(bool value)

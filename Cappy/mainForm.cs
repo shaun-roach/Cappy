@@ -13,7 +13,7 @@ namespace Cappy
     public partial class MainForm : Form
     {
         private bool allowshowdisplay = false;
-        private bool capsLockOn = Control.IsKeyLocked(Keys.CapsLock);
+        private bool capsLockOn = !Control.IsKeyLocked(Keys.CapsLock);
         private OnOffForm onOffForm = new OnOffForm();
 
         public MainForm()
